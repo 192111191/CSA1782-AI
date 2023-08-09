@@ -1,0 +1,43 @@
+from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+
+    def bfs(self, start):
+        visited = set()
+        queue = [start]
+        while queue:
+            vertex = queue.pop(0)
+            if vertex not in visited:
+                print(vertex, end=" ")
+                visited.add(vertex)
+                queue.extend(self.graph[vertex])
+
+    def dfs(self, start):
+        visited = set()
+        self._dfs_recursive(start, visited)
+
+    def _dfs_recursive(self, vertex, visited):
+        visited.add(vertex)
+        print(vertex, end=" ")
+        for neighbor in self.graph[vertex]:
+            if neighbor not in visited:
+                self._dfs_recursive(neighbor, visited)
+
+# Create a graph
+g = Graph()
+g.add_edge(1, 2)
+g.add_edge(1, 3)
+g.add_edge(2, 4)
+g.add_edge(2, 5)
+g.add_edge(3, 6)
+g.add_edge(3, 7)
+
+print("BFS traversal:")
+g.bfs(1)
+print("\nDFS traversal:")
+g.dfs(1)
