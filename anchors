@@ -1,0 +1,15 @@
+import re
+ 
+sourceString = '''
+<p>Paragraph 1</p>
+<a href = "link_one">Link 1</a><br />
+<a href = "link_two">Link 2</a><br />
+<a href = "link_three">Link 3</a><br />
+ 
+<p>Paragraph 2</p>
+<a href = "link_four">Link 4</a><br />
+<a href = "link_five">Link 5</a><br />
+<a href = "link_six">Link 6</a><br />
+'''
+ 
+print(re.findall('<a.+?href\s*=\s*[\'\"](.+?)[\'\"]', sourceString))     # ['link_one', 'link_two', 'link_three', 'link_four', 'link_five', 'link_six']
